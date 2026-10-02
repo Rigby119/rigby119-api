@@ -1,9 +1,9 @@
-import 'dotenv/config';
 import express from 'express';
-import apiRouter from './routes/api.js';
+import routes from './routes/index.js';
+import { notFound } from './middlewares/notFound.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -14,8 +14,9 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/api', apiRouter);
+app.use('/api', routes);
 
-app.listen(PORT, () => {
-    console.log(`API running on port ${PORT}`);
-});
+app.use(notFound);
+app.use(errorHandler);
+
+export default app;
