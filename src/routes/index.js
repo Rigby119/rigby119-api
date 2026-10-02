@@ -5,12 +5,14 @@ import systemRoutes from './system.routes.js';
 import helloRoutes from './hello.routes.js';
 import quoteRoutes from './quote.routes.js';
 import generatorsRoutes from './generators.routes.js';
+import databaseRoutes from './database.routes.js';
 
 const router = Router();
 
 router.use('/info', infoRoutes);
 router.use('/hello', helloRoutes);
 router.use('/quote', quoteRoutes);
+router.use('/database', databaseRoutes);
 
 // Estos dos definen sus propios paths completos (/status, /uuid, /dice/:sides...)
 router.use('/', systemRoutes);
